@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROLLO TPV - Pedidos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+    <header class="bg-blue-600 p-6 text-white text-center shadow-lg">
+        <h1 class="text-3xl font-bold">ROLLO TPV</h1>
+    </header>
+
+    <main id="contenedor-productos" class="max-w-6xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        </main>
+
+    <section id="seccion-pedido" class="max-w-2xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-2xl hidden border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            📦 Tu Pedido
+        </h2>
+        
+        <div id="lista-seleccionados" class="mb-6 p-4 bg-blue-50 text-blue-800 rounded-lg border border-blue-100 italic">
+            </div>
+
+        <form id="formulario-pedido" class="space-y-5">
+            <div>
+                <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-1">Nombre</label>
+                <input type="text" id="nombre" placeholder="Tu nombre" required 
+                    class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+            
+            <div>
+                <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-1">Teléfono</label>
+                <input type="tel" id="telefono" placeholder="WhatsApp o Móvil" required 
+                    class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <div>
+                <label for="direccion" class="block text-sm font-semibold text-gray-700 mb-1">Dirección de envío</label>
+                <input type="text" id="direccion" placeholder="Calle, número, código postal..." required
+                    class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <button type="submit" id="btn-enviar" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 transition-all shadow-lg">
+                Enviar Pedido
+            </button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

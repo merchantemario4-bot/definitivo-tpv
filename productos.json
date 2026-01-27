@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "nombre": "80 x 80",
+    "descripcion": "Caja de rollo termino de 80 x 80",
+    "imagen": "img/rollo80.jpg"
+  },
+  {
+    "id": 1,
+    "nombre": "Comandas duplicada",
+    "descripcion": "Talonario papel",
+    "imagen": "img/comandas.webp"
+  },
+  {
+    "id": 3,
+    "nombre": "Comandas simple",
+    "descripcion": "Talonario papel",
+    "imagen": "img/simple.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Comandas triplicada",
+    "descripcion": "Talonario papel",
+    "imagen": "img/triple.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Guante de nitrilo xl",
+    "descripcion": "guante de nitrilo",
+    "imagen": "img/guantes.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Guante de nitrilo L",
+    "descripcion": "guante de nitrilo",
+    "imagen": "img/talla l.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Guante de nitrilo M",
+    "descripcion": "guante de nitrilo",
+    "imagen": "img/talla m.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Guante de nitrilo S",
+    "descripcion": "guante de nitrilo",
+    "imagen": "img/talla s.jpg"
+  }
+  
+]
