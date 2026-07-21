@@ -1,0 +1,137 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        linear-gradient(180deg, rgba(241, 245, 249, 0.95), rgba(248, 250, 252, 1)),
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 34rem);
+}
+
+button,
+input {
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background-color 160ms ease;
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.35);
+    outline-offset: 2px;
+}
+
+.producto-card {
+    display: flex;
+    min-height: 22rem;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid rgb(226 232 240);
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.producto-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.producto-imagen {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    padding: 1rem;
+}
+
+.btn-seleccionar {
+    margin-top: auto;
+    width: 100%;
+    border-radius: 8px;
+    background: rgb(15 23 42);
+    padding: 0.75rem 1rem;
+    font-weight: 800;
+    color: white;
+}
+
+.btn-seleccionar:hover {
+    background: rgb(16 185 129);
+}
+
+.pedido-panel {
+    border: 1px solid rgb(226 232 240);
+    border-radius: 8px;
+    background: white;
+    padding: 1.25rem;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+}
+
+.pedido-linea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem;
+}
+
+.btn-cantidad {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(203 213 225);
+    border-radius: 999px;
+    background: white;
+    font-weight: 900;
+    color: rgb(15 23 42);
+}
+
+.btn-cantidad:hover {
+    border-color: rgb(16 185 129);
+    background: rgb(236 253 245);
+    color: rgb(4 120 87);
+}
+
+.campo-formulario {
+    width: 100%;
+    border: 1px solid rgb(203 213 225);
+    border-radius: 8px;
+    background: white;
+    padding: 0.8rem 0.9rem;
+    outline: none;
+}
+
+.campo-formulario:focus {
+    border-color: rgb(16 185 129);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
+}
+
+.btn-enviar {
+    width: 100%;
+    border-radius: 8px;
+    background: rgb(5 150 105);
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    box-shadow: 0 12px 24px rgba(5, 150, 105, 0.22);
+}
+
+.btn-enviar:hover {
+    background: rgb(4 120 87);
+}
+
+@media (max-width: 640px) {
+    .producto-card {
+        min-height: auto;
+    }
+
+    .pedido-panel {
+        padding: 1rem;
+    }
+}
