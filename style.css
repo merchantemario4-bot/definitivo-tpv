@@ -58,6 +58,50 @@ input:focus-visible {
     color: white;
 }
 
+.producto-etiqueta {
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgb(4 120 87);
+}
+
+.producto-precio {
+    margin: 0.5rem 0 1rem;
+}
+
+.producto-precio strong {
+    display: block;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    font-weight: 900;
+    color: rgb(15 23 42);
+}
+
+.producto-precio span,
+.pedido-total span {
+    display: block;
+    font-size: 0.75rem;
+    color: rgb(71 85 105);
+}
+
+.pedido-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgb(236 253 245);
+}
+
+#total-pedido {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    color: rgb(4 120 87);
+}
+
 .btn-seleccionar:hover {
     background: rgb(16 185 129);
 }
@@ -76,6 +120,21 @@ input:focus-visible {
     justify-content: space-between;
     gap: 0.75rem;
     padding: 0.875rem;
+}
+
+.pedido-nombre {
+    overflow-wrap: anywhere;
+    font-weight: 700;
+}
+
+.pedido-importe {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: rgb(4 120 87);
+}
+
+#seccion-pedido {
+    scroll-margin-top: 10rem;
 }
 
 .btn-cantidad {
@@ -129,6 +188,11 @@ input:focus-visible {
 @media (max-width: 640px) {
     .producto-card {
         min-height: auto;
+    }
+
+    .producto-imagen {
+        height: 11rem;
+        aspect-ratio: auto;
     }
 
     .pedido-panel {

@@ -10,10 +10,14 @@ const elementos = {
     resumenUnidades: document.getElementById('resumen-unidades'),
     formulario: document.getElementById('formulario-pedido'),
     btnEnviar: document.getElementById('btn-enviar'),
-    mensajeEstado: document.getElementById('mensaje-estado')
+    mensajeEstado: document.getElementById('mensaje-estado'),
+    totalPedido: document.getElementById('total-pedido')
 };
 
 let carrito = {};
+let catalogo = [];
+let enviando = false;
+const formatoEuros = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
 
 if (window.emailjs) {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -21,14 +25,14 @@ if (window.emailjs) {
 
 async function cargarProductos() {
     try {
-        const respuesta = await fetch('productos.json');
+        const respuesta = await fetch('productos.json', { cache: 'no-store' });
 
         if (!respuesta.ok) {
             throw new Error(`No se pudo cargar productos.json (${respuesta.status})`);
         }
 
-        const productos = await respuesta.json();
-        pintarProductos(productos);
+        catalogo = await respuesta.json();
+        pintarProductos(catalogo);
     } catch (error) {
         console.error("Error al cargar productos:", error);
         elementos.contenedor.innerHTML = `
@@ -67,21 +71,38 @@ function pintarProductos(productos) {
         descripcion.className = "mt-1 min-h-10 text-sm leading-5 text-slate-600";
         descripcion.textContent = producto.descripcion;
 
+        const etiqueta = document.createElement('p');
+        etiqueta.className = "producto-etiqueta";
+        etiqueta.textContent = producto.etiqueta || "";
+
+        const precio = document.createElement('div');
+        precio.className = "producto-precio";
+        const importe = document.createElement('strong');
+        importe.textContent = formatoEuros.format(producto.precio);
+        const iva = document.createElement('span');
+        iva.textContent = "IVA incluido";
+        precio.append(importe, iva);
+
         const boton = document.createElement('button');
         boton.type = "button";
         boton.className = "btn-seleccionar";
         boton.dataset.producto = producto.nombre;
-        boton.textContent = "Seleccionar";
+        boton.textContent = "Añadir al pedido";
+        boton.setAttribute('aria-label', `Añadir ${producto.nombre} por ${formatoEuros.format(producto.precio)}`);
 
-        contenido.append(titulo, descripcion, boton);
+        contenido.append(titulo, descripcion, etiqueta, precio, boton);
         card.append(imagen, contenido);
         elementos.contenedor.appendChild(card);
     });
 }
 
 function agregarAlCarrito(nombre) {
+    if (enviando) return;
+    const producto = catalogo.find(item => item.nombre === nombre);
+    if (!producto) return;
+
     if (!carrito[nombre]) {
-        carrito[nombre] = { nombre, cantidad: 0 };
+        carrito[nombre] = { ...producto, cantidad: 0 };
     }
 
     carrito[nombre].cantidad += 1;
@@ -89,7 +110,7 @@ function agregarAlCarrito(nombre) {
 }
 
 function cambiarCantidad(nombre, cambio) {
-    if (!carrito[nombre]) {
+    if (enviando || !carrito[nombre]) {
         return;
     }
 
@@ -103,25 +124,37 @@ function cambiarCantidad(nombre, cambio) {
 }
 
 function construirResumenPedido() {
-    return Object.values(carrito)
-        .map(item => `${item.cantidad} ${item.cantidad === 1 ? 'unidad' : 'unidades'} - ${item.nombre}`)
-        .join("\n");
+    const lineas = Object.values(carrito).map(item =>
+        `${item.cantidad} × ${item.nombre} (${item.descripcion}) — ${formatoEuros.format(item.precio)} cada oferta — Subtotal: ${formatoEuros.format(item.cantidad * item.precio)}`
+    );
+    lineas.push(`Total: ${contarCajas()} ${contarCajas() === 1 ? 'caja' : 'cajas'}`);
+    lineas.push(`TOTAL DEL PEDIDO: ${formatoEuros.format(calcularTotal())} (IVA incluido)`);
+    return lineas.join("\n");
 }
 
 function contarUnidades() {
     return Object.values(carrito).reduce((total, item) => total + item.cantidad, 0);
 }
 
-function textoUnidades(total) {
-    return `${total} ${total === 1 ? 'unidad' : 'unidades'}`;
+function contarCajas() {
+    return Object.values(carrito).reduce((total, item) => total + item.cantidad * item.cajas, 0);
+}
+
+function calcularTotal() {
+    return Object.values(carrito).reduce((total, item) => total + item.cantidad * item.precio, 0);
+}
+
+function textoCajas(total) {
+    return `${total} ${total === 1 ? 'caja' : 'cajas'}`;
 }
 
 function actualizarPedido(debeDesplazar = false) {
     const productos = Object.values(carrito);
-    const total = contarUnidades();
+    const total = contarCajas();
 
-    elementos.contadorCarrito.textContent = textoUnidades(total);
-    elementos.resumenUnidades.textContent = `${textoUnidades(total)} seleccionadas`;
+    elementos.contadorCarrito.textContent = `${textoCajas(total)} · ${formatoEuros.format(calcularTotal())}`;
+    elementos.resumenUnidades.textContent = `${textoCajas(total)} ${total === 1 ? 'seleccionada' : 'seleccionadas'}`;
+    elementos.totalPedido.textContent = formatoEuros.format(calcularTotal());
     elementos.listaSeleccionados.innerHTML = "";
 
     if (productos.length === 0) {
@@ -139,12 +172,16 @@ function actualizarPedido(debeDesplazar = false) {
         detalle.className = "min-w-0";
 
         const nombre = document.createElement('p');
-        nombre.className = "truncate font-bold text-slate-900";
+        nombre.className = "pedido-nombre";
         nombre.textContent = item.nombre;
 
         const cantidad = document.createElement('p');
         cantidad.className = "text-sm text-slate-500";
-        cantidad.textContent = textoUnidades(item.cantidad);
+        cantidad.textContent = `${item.cantidad} × ${formatoEuros.format(item.precio)} · ${textoCajas(item.cantidad * item.cajas)}`;
+
+        const subtotal = document.createElement('p');
+        subtotal.className = "pedido-importe";
+        subtotal.textContent = formatoEuros.format(item.cantidad * item.precio);
 
         const controles = document.createElement('div');
         controles.className = "flex shrink-0 items-center gap-2";
@@ -155,7 +192,7 @@ function actualizarPedido(debeDesplazar = false) {
         numero.textContent = item.cantidad;
         const botonMas = crearBotonCantidad(item.nombre, 1, "+");
 
-        detalle.append(nombre, cantidad);
+        detalle.append(nombre, cantidad, subtotal);
         controles.append(botonMenos, numero, botonMas);
         fila.append(detalle, controles);
         elementos.listaSeleccionados.appendChild(fila);
@@ -172,7 +209,7 @@ function crearBotonCantidad(nombre, cambio, texto) {
     boton.className = "btn-cantidad";
     boton.dataset.producto = nombre;
     boton.dataset.cambio = cambio;
-    boton.setAttribute('aria-label', `${cambio > 0 ? 'Añadir' : 'Quitar'} una unidad de ${nombre}`);
+    boton.setAttribute('aria-label', `${cambio > 0 ? 'Añadir' : 'Quitar'} una oferta de ${nombre}`);
     boton.textContent = texto;
     return boton;
 }
@@ -213,6 +250,7 @@ elementos.listaSeleccionados.addEventListener('click', event => {
 
 elementos.formulario.addEventListener('submit', async event => {
     event.preventDefault();
+    if (enviando) return;
     limpiarEstado();
 
     if (contarUnidades() === 0) {
@@ -221,14 +259,17 @@ elementos.formulario.addEventListener('submit', async event => {
     }
 
     elementos.btnEnviar.textContent = "Enviando...";
-    elementos.btnEnviar.disabled = true;
+    enviando = true;
+    document.querySelectorAll('button, #formulario-pedido input').forEach(control => { control.disabled = true; });
 
     const datosEnvio = {
         nombre_cliente: document.getElementById('nombre').value,
         telefono_cliente: document.getElementById('telefono').value,
         direccion_cliente: document.getElementById('direccion').value,
         productos: construirResumenPedido(),
-        total_unidades: contarUnidades()
+        total_unidades: contarUnidades(),
+        total_cajas: contarCajas(),
+        total_importe: formatoEuros.format(calcularTotal())
     };
 
     try {
@@ -245,8 +286,9 @@ elementos.formulario.addEventListener('submit', async event => {
         console.error("Error al enviar pedido:", error);
         mostrarEstado("No se pudo enviar el pedido. Revisa la conexión e inténtalo de nuevo.", "error");
     } finally {
+        enviando = false;
         elementos.btnEnviar.textContent = "Enviar pedido";
-        elementos.btnEnviar.disabled = false;
+        document.querySelectorAll('button, #formulario-pedido input').forEach(control => { control.disabled = false; });
     }
 });
 

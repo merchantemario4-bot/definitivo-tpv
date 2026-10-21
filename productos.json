@@ -1,50 +1,27 @@
 [
   {
     "id": 1,
-    "nombre": "80 x 80",
-    "descripcion": "Caja de rollo térmico 80 x 80 para TPV",
-    "imagen": "img/rollo80.jpg"
+    "nombre": "80 x 80 · 1 caja",
+    "descripcion": "48 rollos térmicos para TPV",
+    "imagen": "img/rollo80.jpg",
+    "cajas": 1,
+    "precio": 50
   },
   {
     "id": 2,
-    "nombre": "Comandas duplicada",
-    "descripcion": "Talonario de comandas con copia",
-    "imagen": "img/comandas.webp"
+    "nombre": "80 x 80 · 2 cajas",
+    "descripcion": "96 rollos térmicos para TPV",
+    "imagen": "img/rollo80.jpg",
+    "cajas": 2,
+    "precio": 92,
+    "etiqueta": "Ahorra 8 € con el pack"
   },
   {
     "id": 3,
-    "nombre": "Comandas simple",
-    "descripcion": "Talonario de comandas simple",
-    "imagen": "img/simple.jpg"
-  },
-  {
-    "id": 4,
-    "nombre": "Comandas triplicada",
-    "descripcion": "Talonario de comandas con dos copias",
-    "imagen": "img/triple.jpg"
-  },
-  {
-    "id": 5,
-    "nombre": "Guante de nitrilo XL",
-    "descripcion": "Caja de guantes de nitrilo talla XL",
-    "imagen": "img/guantes.jpg"
-  },
-  {
-    "id": 6,
-    "nombre": "Guante de nitrilo L",
-    "descripcion": "Caja de guantes de nitrilo talla L",
-    "imagen": "img/talla l.jpg"
-  },
-  {
-    "id": 7,
-    "nombre": "Guante de nitrilo M",
-    "descripcion": "Caja de guantes de nitrilo talla M",
-    "imagen": "img/talla m.jpg"
-  },
-  {
-    "id": 8,
-    "nombre": "Guante de nitrilo S",
-    "descripcion": "Caja de guantes de nitrilo talla S",
-    "imagen": "img/talla s.jpg"
+    "nombre": "57 x 55 · 1 caja",
+    "descripcion": "Caja de rollos térmicos para TPV",
+    "imagen": "57x55.jpg",
+    "cajas": 1,
+    "precio": 20
   }
 ]
