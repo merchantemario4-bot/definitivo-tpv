@@ -35,6 +35,39 @@ input:focus-visible {
     box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
 }
 
+.aviso-transporte {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid rgb(167 243 208);
+    border-radius: 8px;
+    background: rgb(236 253 245);
+    color: rgb(6 95 70);
+}
+
+.aviso-transporte svg {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+.aviso-transporte strong,
+.aviso-transporte span {
+    display: block;
+}
+
+.aviso-transporte strong {
+    font-size: 1.125rem;
+    font-weight: 900;
+}
+
+.aviso-transporte span {
+    margin-top: 0.125rem;
+    font-size: 0.875rem;
+}
+
 .producto-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);

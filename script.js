@@ -80,7 +80,7 @@ function pintarProductos(productos) {
         const importe = document.createElement('strong');
         importe.textContent = formatoEuros.format(producto.precio);
         const iva = document.createElement('span');
-        iva.textContent = "IVA incluido";
+        iva.textContent = "IVA y transporte incluidos";
         precio.append(importe, iva);
 
         const boton = document.createElement('button');
@@ -128,7 +128,8 @@ function construirResumenPedido() {
         `${item.cantidad} × ${item.nombre} (${item.descripcion}) — ${formatoEuros.format(item.precio)} cada oferta — Subtotal: ${formatoEuros.format(item.cantidad * item.precio)}`
     );
     lineas.push(`Total: ${contarCajas()} ${contarCajas() === 1 ? 'caja' : 'cajas'}`);
-    lineas.push(`TOTAL DEL PEDIDO: ${formatoEuros.format(calcularTotal())} (IVA incluido)`);
+    lineas.push("Gastos de transporte: incluidos (0,00 €)");
+    lineas.push(`TOTAL DEL PEDIDO: ${formatoEuros.format(calcularTotal())} (IVA y transporte incluidos)`);
     return lineas.join("\n");
 }
 

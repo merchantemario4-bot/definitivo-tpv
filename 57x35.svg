@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
+  <title>Rollos térmicos 57 x 35</title>
+  <defs>
+    <linearGradient id="papel" x1="0" x2="1"><stop stop-color="#e2e8f0"/><stop offset=".38" stop-color="#fff"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient>
+    <linearGradient id="tapa" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#f1f5f9"/></linearGradient>
+  </defs>
+  <ellipse cx="320" cy="369" rx="219" ry="27" fill="#0f172a" opacity=".07"/>
+  <g>
+    <path d="M110 150v123c0 33 51 59 114 59s114-26 114-59V150" fill="url(#papel)"/>
+    <ellipse cx="224" cy="150" rx="114" ry="59" fill="url(#tapa)" stroke="#e2e8f0" stroke-width="2"/>
+    <ellipse cx="224" cy="150" rx="24" ry="13" fill="#b2a18e"/>
+    <ellipse cx="224" cy="153" rx="17" ry="8" fill="#6b5a47"/>
+  </g>
+  <g>
+    <path d="M310 167v123c0 33 51 59 114 59s114-26 114-59V167" fill="url(#papel)"/>
+    <ellipse cx="424" cy="167" rx="114" ry="59" fill="url(#tapa)" stroke="#e2e8f0" stroke-width="2"/>
+    <ellipse cx="424" cy="167" rx="24" ry="13" fill="#b2a18e"/>
+    <ellipse cx="424" cy="170" rx="17" ry="8" fill="#6b5a47"/>
+  </g>
+  <g>
+    <path d="M207 246v95c0 33 51 59 114 59s114-26 114-59v-95" fill="url(#papel)"/>
+    <ellipse cx="321" cy="246" rx="114" ry="59" fill="url(#tapa)" stroke="#e2e8f0" stroke-width="2"/>
+    <ellipse cx="321" cy="246" rx="24" ry="13" fill="#b2a18e"/>
+    <ellipse cx="321" cy="249" rx="17" ry="8" fill="#6b5a47"/>
+  </g>
+  <rect x="244" y="417" width="152" height="42" rx="21" fill="#ecfdf5"/>
+  <text x="320" y="445" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#047857">57 × 35</text>
+</svg>

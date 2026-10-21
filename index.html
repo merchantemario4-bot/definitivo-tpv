@@ -6,7 +6,7 @@
     <title>ROLLO TPV - Pedidos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=20261021">
+    <link rel="stylesheet" href="style.css?v=20261021-2">
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-900 font-sans">
 
@@ -26,13 +26,17 @@
         <section aria-labelledby="catalogo-titulo">
             <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <h2 id="catalogo-titulo" class="text-xl font-black text-slate-950">Ofertas de rollos TPV</h2>
+                    <h2 id="catalogo-titulo" class="text-xl font-black text-slate-950">Ofertas de rollos</h2>
                     <p class="text-sm text-slate-600">Elige tu oferta, rellena tus datos y envía el pedido.</p>
-                    <p class="mt-2 text-sm font-bold text-emerald-800">Todos los precios incluyen IVA.</p>
                 </div>
             </div>
 
-            <div id="contenedor-productos" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div class="aviso-transporte">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 4v3h-7"/><circle cx="7" cy="18" r="2" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
+                <div><strong>Transporte incluido</strong><span>En todos los pedidos. Precios con IVA incluido.</span></div>
+            </div>
+
+            <div id="contenedor-productos" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             </div>
         </section>
 
@@ -48,7 +52,7 @@
             </div>
 
             <div class="pedido-total" aria-live="polite">
-                <div><strong>Total del pedido</strong><span>IVA incluido</span></div>
+                <div><strong>Total del pedido</strong><span>IVA y transporte incluidos</span></div>
                 <strong id="total-pedido">0,00 €</strong>
             </div>
 
@@ -84,6 +88,6 @@
         ROLLO TPV
     </footer>
 
-    <script src="script.js?v=20261021"></script>
+    <script src="script.js?v=20261021-2"></script>
 </body>
 </html>

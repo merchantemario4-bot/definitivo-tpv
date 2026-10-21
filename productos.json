@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombre": "80 x 80 · 1 caja",
-    "descripcion": "48 rollos térmicos para TPV",
+    "descripcion": "48 rollos térmicos",
     "imagen": "img/rollo80.jpg",
     "cajas": 1,
     "precio": 50
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "nombre": "80 x 80 · 2 cajas",
-    "descripcion": "96 rollos térmicos para TPV",
+    "descripcion": "96 rollos térmicos",
     "imagen": "img/rollo80.jpg",
     "cajas": 2,
     "precio": 92,
@@ -19,8 +19,16 @@
   {
     "id": 3,
     "nombre": "57 x 55 · 1 caja",
-    "descripcion": "Caja de rollos térmicos para TPV",
+    "descripcion": "100 rollos térmicos",
     "imagen": "57x55.jpg",
+    "cajas": 1,
+    "precio": 50
+  },
+  {
+    "id": 4,
+    "nombre": "57 x 35 · 1 caja",
+    "descripcion": "50 rollos térmicos para TPV",
+    "imagen": "57x35.svg",
     "cajas": 1,
     "precio": 20
   }
